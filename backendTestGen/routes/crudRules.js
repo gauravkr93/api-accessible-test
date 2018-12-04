@@ -32,4 +32,18 @@ router.get('/all', function(req, res, next) {
     });
 
 
+        /* delete rules listing. */
+router.delete('/', function(req, res, next) {
+    
+  Rules.remove(req.body,function (err, RemovedResult) {
+      if (err) return next(err);
+      res.json(RemovedResult);
+    });
+
+//res.send('add question');
+
+
+});
+
+
 module.exports = router;

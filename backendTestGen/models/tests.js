@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var RuleSchema = new mongoose.Schema({
   name: String,
-  rules: [{id:String}],
+  rules: [{_id:String}],
   time:Number
 });
 

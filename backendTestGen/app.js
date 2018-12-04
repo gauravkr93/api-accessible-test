@@ -14,7 +14,7 @@ var app = express();
 //add mongo db support 
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://35.237.182.19/hackdb')
+mongoose.connect('mongodb://104.196.65.106/hackdb')
   .then(() =>  console.log('connection successful'))
   .catch((err) => console.error(err));
 // view engine setup

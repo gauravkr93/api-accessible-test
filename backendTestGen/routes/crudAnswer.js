@@ -14,7 +14,7 @@ res.send('add question');
 });
 */
 
-/* SAVE BOOK */
+/* SAVE Ans */
 router.post('/add', function(req, res, next) {
     console.log(req.body);
     Answers.create(req.body, function (err, post) {
@@ -24,7 +24,7 @@ router.post('/add', function(req, res, next) {
   });
 
 
-/* GET users listing. */
+/* GET Ans listing. */
 router.get('/all', function(req, res, next) {
     
     Answers.find(function (err, answersResult) {
@@ -36,6 +36,21 @@ router.get('/all', function(req, res, next) {
     
     
     });
+
+
+        /* delete Ans listing. */
+router.delete('/', function(req, res, next) {
+    
+  Answers.remove(req.body,function (err, RemovedResult) {
+      if (err) return next(err);
+      res.json(RemovedResult);
+    });
+
+//res.send('add question');
+
+
+});
+
 
 
 module.exports = router;

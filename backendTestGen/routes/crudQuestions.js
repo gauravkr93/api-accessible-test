@@ -4,16 +4,7 @@ var mongoose = require('mongoose');
 var Question = require('../models/questions.js');
 var Answers = require('../models/answers.js');
 
-/*/* PUT users listing.
-router.put('/add', function(req, res, next) {
-console.log(req);
-    
 
-res.send('add question');
-
-
-});
-*/
 
 /* SAVE Question */
 router.post('/add', function(req, res, next) {
@@ -42,7 +33,7 @@ router.post('/add', function(req, res, next) {
   });
 
 
-/* GET users listing. */
+/* GET question listing. */
 router.get('/all', function(req, res, next) {
     
         Question.find(function (err, questionsResult) {
@@ -54,6 +45,20 @@ router.get('/all', function(req, res, next) {
     
     
     });
+
+
+    /* delete question listing. */
+router.delete('/', function(req, res, next) {
+    
+  Question.remove(req.body,function (err, RemovedResult) {
+      if (err) return next(err);
+      res.json(RemovedResult);
+    });
+
+//res.send('add question');
+
+
+});
 
 
 module.exports = router;
