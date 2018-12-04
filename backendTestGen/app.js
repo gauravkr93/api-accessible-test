@@ -8,6 +8,8 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var crudQuestions = require('./routes/crudQuestions');
 var crudAnswers = require('./routes/crudAnswer');
+var crudTests = require('./routes/crudTests');
+var crudRules = require('./routes/crudRules');
 var app = express();
 //add mongo db support 
 var mongoose = require('mongoose');
@@ -29,6 +31,9 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/questions', crudQuestions);
 app.use('/answers', crudAnswers);
+app.use('/tests', crudTests);
+app.use('/rules', crudRules);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
