@@ -35,6 +35,7 @@ res.send('add question');
 
     /* GET test listing. */
   router.get('/id/:_id', function(req, res, next) {
+    var resultreturn=[];
     Tests.findById(req.params._id,function (err, answersResult) {
               if (err) return next(err);
               var list=[];
@@ -46,19 +47,29 @@ res.send('add question');
           //   console.log(rulesArray);
              Rules.find(rulesArray,function(err,mongoRspForRules){
               if (err) return next(err);
+              var arrayofPromise=[];
               for (rls in mongoRspForRules) {
                 let category=mongoRspForRules[rls].category;
-             Question.aggregate([{ $sample: { size: 1 } },{$match:{category:category}}]).then(function(res){
-                console.log(res);
-             });
+                arrayofPromise.push( Question.aggregate([{ $sample: { size: mongoRspForRules[rls].number } },{$match:{category:category}}])
+             .then(function(result){
+            resultreturn.push(result);
+             }));
+            
                 }
+                Promise.all(arrayofPromise).then(function(){
+                  console.log(resultreturn);
+                 res.json(resultreturn);
+                })
+                
           //   console.log(mongoRspForRules);
-             res.json(mongoRspForRules);
+          
          });
         
           
               
             });  
+            
+
       });
   
 
