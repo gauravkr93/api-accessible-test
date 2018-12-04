@@ -48,7 +48,9 @@ res.send('add question');
               if (err) return next(err);
               for (rls in mongoRspForRules) {
                 let category=mongoRspForRules[rls].category;
-             // Question.aggregate().then
+             Question.aggregate([{ $sample: { size: 1 } },{$match:{category:category}}]).then(function(res){
+                console.log(res);
+             });
                 }
           //   console.log(mongoRspForRules);
              res.json(mongoRspForRules);
